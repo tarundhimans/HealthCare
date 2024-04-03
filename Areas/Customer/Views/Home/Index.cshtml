@@ -1,8 +1,42 @@
-﻿@{
+﻿@model IEnumerable<E_Healthcare.Models.Doctor>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="text-danger text-center">Health Care</h1>
+
+<div class="row">
+    @foreach (var doctor in Model)
+    {
+        <div class="col-lg-3 col-md-3">
+            <div class="row p-2">
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-header bg-info">
+                          Doctor Information
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Name: @doctor.Name</h5>
+                            <p class="card-text">Qualification: @doctor.Specialties</p>
+                            <p class="card-text">Contact Information: @doctor.Qualifications</p>
+                            <p class="card-text">Available: @doctor.ConsultationFee</p>
+                         
+                            <a asp-action="DoctorDetails" class="btn btn-primary" asp-route-id="@doctor.Id">Book Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+@if (ViewBag.CurrentPage > 1)
+{
+    <a asp-action="Index" class="btn btn-primary" asp-route-page="@(ViewBag.CurrentPage - 1)">Previous</a>
+}
+
+@if (ViewBag.CurrentPage < ViewBag.TotalPages)
+{
+    <a asp-action="Index" class="btn btn-primary" asp-route-page="@(ViewBag.CurrentPage + 1)">Next</a>
+}

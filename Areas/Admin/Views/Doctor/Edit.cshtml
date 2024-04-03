@@ -1,0 +1,29 @@
+﻿@model E_Healthcare.Models.Doctor
+
+
+<h1>Edit Doctor</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.Id">
+    <div class="form-group col-lg-5">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group col-lg-5">
+        <label asp-for="Specialties"></label>
+        <input asp-for="Specialties" class="form-control" />
+        <span asp-validation-for="Specialties" class="text-danger"></span>
+    </div>
+    <div class="form-group col-lg-5">
+        <label asp-for="Qualifications"></label>
+        <input asp-for="Qualifications" class="form-control" />
+        <span asp-validation-for="Qualifications" class="text-danger"></span>
+    </div>
+    <div class="form-group col-lg-5">
+        <label asp-for="ConsultationFee"></label>
+        <input asp-for="ConsultationFee" class="form-control" />
+        <span asp-validation-for="ConsultationFee" class="text-danger"></span>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,0 +1,15 @@
+﻿@model E_Healthcare.Models.Doctor
+
+
+<h1>Doctor Details</h1>
+
+<div>
+    <h4>Name: @Html.DisplayFor(model => model.Name)</h4>
+    <h4>Specialties: @Html.DisplayFor(model => model.Specialties)</h4>
+    <h4>Qualifications: @Html.DisplayFor(model => model.Qualifications)</h4>
+    <h4>Consultation Fee: @Html.DisplayFor(model => model.ConsultationFee)</h4>
+</div>
+
+<p>
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
+</p>

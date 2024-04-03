@@ -9045,11 +9045,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET MVC\\E-Healthcare\\E-Healthcare.csproj",
+      "projectUniqueName": "E:\\New folder (2)\\HealthCare\\E-Healthcare.csproj",
       "projectName": "E-Healthcare",
-      "projectPath": "E:\\ASP.NET MVC\\E-Healthcare\\E-Healthcare.csproj",
+      "projectPath": "E:\\New folder (2)\\HealthCare\\E-Healthcare.csproj",
       "packagesPath": "C:\\Users\\Madhu\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET MVC\\E-Healthcare\\obj\\",
+      "outputPath": "E:\\New folder (2)\\HealthCare\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

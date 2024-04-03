@@ -1,0 +1,18 @@
+﻿@model E_Healthcare.Models.Doctor
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="card mb-3">
+        <div class="card-header bg-info">
+            Doctor Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Doctor Name: @Model.Name</h5>
+            <p class="card-text">Specialties: @Model.Specialties</p>
+            <p class="card-text">Qualification: @Model.Qualifications</p>
+            <p class="card-text">ConsultationFee: @Model.ConsultationFee</p>
+            
+            <a asp-controller="Patient" asp-action="Create" class="btn btn-primary">Want To Book</a>
+        </div>
+    </div>
+</form>

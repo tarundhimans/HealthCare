@@ -10,6 +10,10 @@ namespace E_Healthcare.Data
             : base(options)
         {
         }
-        public DbSet<ApplicationUser>ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model E_Healthcare.Models.Appointment
+
+<h2>Delete Appointment</h2>
+
+<h3>Are you sure you want to delete this appointment?</h3>
+<div>
+    <h4>Name: @Model.Name</h4>
+    <h4>Phone Number: @Model.PhoneNumber</h4>
+    <h4>Personal Details: @Model.PersonalDetails</h4>
+    <h4>Medical History: @Model.MedicalHistory</h4>
+    <h4>Insurance Information: @Model.InsuranceInformation</h4>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button> |
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
+</form>
