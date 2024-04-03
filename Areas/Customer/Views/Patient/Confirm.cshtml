@@ -1,0 +1,21 @@
+﻿@model E_Healthcare.Models.Appointment
+
+<div class="container row">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Booking Confirmed Successfully</h1><br />
+        <img src="https://img.freepik.com/free-vector/thank-you-lettering_1262-6963.jpg?w=740&t=st=1709788802~exp=1709789402~hmac=e363c1cbe293685e1654433732fc48df3a82dd4b4d1cb3525ff8e835fb6470fc" width="20%" />
+    </div>
+    <div class="col-12 text-center" style="color:green">
+        <br />
+        @ViewBag.ConfirmationMessage <br />
+        We have received your booking and will confirm with you shortly! <br />
+        <br />
+        <strong>Name:</strong> @Model.Name <br />
+        <strong>Contact Information:</strong> @Model.PhoneNumber <br />
+        <strong>Case Type:</strong> @Model.PersonalDetails <br />
+        <strong>Attorney Name:</strong> @Model.MedicalHistory <br />
+        <strong>Appointment Date:</strong> @Model.InsuranceInformation <br />
+
+        <a href="@Url.Action("Details", "Client", new { id = Model.Id })" class=" text-white btn btn-primary ">Booking Details</a>
+    </div>
+</div>

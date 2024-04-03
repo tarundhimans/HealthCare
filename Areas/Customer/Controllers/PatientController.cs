@@ -2,6 +2,8 @@
 using E_Healthcare.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace E_Healthcare.Controllers
@@ -55,8 +57,8 @@ namespace E_Healthcare.Controllers
 
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));          
-           
+            return RedirectToAction("Confirm", appointment);
+
         }
         public async Task<IActionResult> Edit(int? id)
         {
@@ -132,6 +134,48 @@ namespace E_Healthcare.Controllers
         private bool AppointmentExists(int id)
         {
             return _context.Appointments.Any(e => e.Id == id);
+        }
+        public IActionResult Confirm(Appointment appointment)
+        {
+            ViewBag.ConfirmationMessage = "Appointment confirmed successfully!";          
+
+           
+
+            try
+            {
+                string smtpServer = "smtp-mail.outlook.com";
+                int smtpPort = 587;
+                string smtpUsername = "dhiman.cssoltuions@outlook.com";
+                string smtpPassword = "Tgardens@12";
+
+                // Create the email message
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(smtpUsername);
+                mail.To.Add("dhiman.cssolutions@gmail.com");
+                mail.Subject = "Appointment Confirmation";
+                mail.Body = "Your appointment has been confirmed successfully!\n" +
+                             "Name: " + appointment.Name + "\n" +
+                             "Phone Number: " + appointment.PhoneNumber + "\n" +
+                             "Personal Details: " + appointment.PersonalDetails + "\n" +
+                             "Medical History: " + appointment.MedicalHistory + "\n" +
+                             "Insurance Information: " + appointment.InsuranceInformation + "\n" +
+                             "Appointment Date and Time: " + appointment.AppointmentDateTime;
+
+                SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+                smtpClient.EnableSsl = true;
+
+                // Send the email
+                smtpClient.Send(mail);
+
+                ViewBag.Message = "Email sent successfully!";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "An error occurred: " + ex.Message;
+            }
+
+            return View(appointment);
         }
     }
 }
