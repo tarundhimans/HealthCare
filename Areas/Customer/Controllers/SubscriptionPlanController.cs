@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using E_Healthcare.Data;
 using E_Healthcare.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace E_Healthcare.Controllers
 {
@@ -121,5 +123,54 @@ namespace E_Healthcare.Controllers
         {
             return _context.SubscriptionPlans.Any(e => e.Id == id);
         }
+        public async Task<IActionResult> Subscribe(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                // Fetch subscription plan details based on the provided ID
+                var subscriptionPlan = await _context.SubscriptionPlans.FindAsync(id);
+
+                if (subscriptionPlan == null)
+                {
+                    return NotFound();
+                }
+
+                // Your email configuration settings
+                string smtpServer = "smtp-mail.outlook.com";
+                int smtpPort = 587;
+                string smtpUsername = "dhiman.cssoltuions@outlook.com";
+                string smtpPassword = "Tgardens@12";
+
+                // Create the email message
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(smtpUsername);
+                mail.To.Add("dhiman.cssolutions@gmail.com"); // Change this to the subscriber's email address
+                mail.Subject = "Subscription Confirmation";
+                mail.Body = "Thank you for subscribing. Your purchase was successful!";
+
+                // Configure SMTP client
+                SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+                smtpClient.EnableSsl = true;
+
+                // Send the email
+                smtpClient.Send(mail);
+
+                // Optionally, you can redirect to a success page after sending the email
+                return View();
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors occurred during email sending
+                ViewBag.Error = "An error occurred: " + ex.Message;
+                return View("Error");
+            }
+        }
     }
+
 }

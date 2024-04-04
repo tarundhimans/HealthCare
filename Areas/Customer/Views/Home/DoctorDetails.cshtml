@@ -11,7 +11,65 @@
             <p class="card-text">Specialties: @Model.Specialties</p>
             <p class="card-text">Qualification: @Model.Qualifications</p>
             <p class="card-text">ConsultationFee: @Model.ConsultationFee</p>
-            
+            <div class="ratings">
+                @if (Model.Specialties == "SkinCare")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Chiropractor")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "ENT")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Neurology")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Psychiatry")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Cardiology")
+                {
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Urologist")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else if (Model.Specialties == "Ortholopedics")
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+                else
+                {
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                }
+            </div>
+
             <a asp-controller="Patient" asp-action="Create" class="btn btn-primary">Want To Book</a>
         </div>
     </div>

@@ -3,7 +3,10 @@
 <h2>Subscription Plans</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.IsInRole("Doctor"))
+    {
+        <a class="btn btn-success" asp-action="Create" class="btn btn-primary">Create New</a>
+    }
 </p>
 
 <table class="table">
@@ -41,11 +44,19 @@
                     @Html.DisplayFor(modelItem => item.DurationMonths)
                 </td>
                 <td>
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a  class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.IsInRole("Patient"))
+                    {
+                        <a href="@Url.Action("Subscribe", new { id = item.Id })" class="btn btn-primary">Subscribe</a>
+                    }
+                    @if (User.IsInRole("Doctor"))
+                    {
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+   

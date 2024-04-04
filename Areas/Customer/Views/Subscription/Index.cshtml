@@ -3,7 +3,7 @@
 <h2>Subscriptions</h2>
 
 <p>
-    <a asp-action="Create">Create New Subscription</a>
+    <a class="btn btn-info" asp-action="Create">Create New Subscription</a>
 </p>
 
 <table class="table table-hover table-striped table-bordered">
@@ -12,9 +12,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Plan.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
@@ -31,9 +29,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Plan.Name)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>

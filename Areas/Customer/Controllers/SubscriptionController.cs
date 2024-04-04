@@ -46,20 +46,30 @@ namespace E_Healthcare.Controllers
         public IActionResult Create()
         {
             ViewBag.PlanId = new SelectList(_context.SubscriptionPlans, "Id", "Name");
-            // Get the email of the currently logged-in user
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
             ViewBag.UserId = new SelectList(_context.Users.Where(u => u.Email == userEmail), "Id", "Email");
+            var subscriptionPlans = _context.SubscriptionPlans.ToList();
+
+            // Create a SelectList for the dropdown list
+            ViewBag.SubscriptionPlans = new SelectList(subscriptionPlans, "Id", "Name");
+
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SubscriptionPlanId,ApplicationUserId,StartDate,EndDate")] Subscription subscription)
-        {
-            
+        public async Task<IActionResult> Create([Bind("Id,SubscriptionPlanId,ApplicationUserId,StartDate")] Subscription subscription)
+        {           
+                var selectedPlan = await _context.SubscriptionPlans.FindAsync(subscription.SubscriptionPlanId);
+                if (selectedPlan != null)
+                {
+                    subscription.EndDate = subscription.StartDate.AddMonths(selectedPlan.DurationMonths);
+                }
+
                 _context.Add(subscription);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             
+
             ViewBag.PlanId = new SelectList(_context.SubscriptionPlans, "Id", "Name", subscription.SubscriptionPlanId);
             ViewBag.UserId = new SelectList(_context.Users, "Id", "Email", subscription.ApplicationUserId);
             return View(subscription);

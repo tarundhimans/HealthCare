@@ -10,9 +10,10 @@
     </div>
     <div class="form-group col-lg-5">
         <label>Phone Number:</label>
-        <input asp-for="PhoneNumber" class="form-control" />
+        <input asp-for="PhoneNumber" class="form-control" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
+
     <div class="form-group col-lg-5">
         <label>Personal Details:</label>
         <input asp-for="PersonalDetails" class="form-control" />
@@ -29,10 +30,15 @@
         <span asp-validation-for="InsuranceInformation" class="text-danger"></span>
     </div>
     <div class="form-group col-lg-5">
-        <label for="AppointmentDateTime">Appointment Date and Time:</label>
-        <input type="datetime-local" class="form-control" id="AppointmentDateTime" name="AppointmentDateTime" required>
+        <label>Appointment Date:</label>
+        <input type="date" asp-for="AppointmentDate" class="form-control" />
+        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
     </div>
-
+    <div class="form-group col-lg-5">
+        <label>Appointment Time:</label>
+        <input type="time" asp-for="AppointmentTime" class="form-control" />
+        <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+    </div>
 
     <div class="form-group col-lg-5">
         <label>Doctor:</label>
@@ -47,11 +53,11 @@
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-@section Scripts{
+
+@section Scripts {
     <script>
-  
-    var currentDate = new Date();
-    var currentDateString = currentDate.toISOString().substring(0, 16); 
-    document.getElementById('AppointmentDateTime').min = currentDateString;
-</script>
+        var currentDate = new Date();
+        var currentDateString = currentDate.toISOString().substring(0, 10);
+        document.getElementById('AppointmentDate').min = currentDateString;
+    </script>
 }

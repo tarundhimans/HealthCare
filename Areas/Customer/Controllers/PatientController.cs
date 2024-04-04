@@ -45,8 +45,7 @@ namespace E_Healthcare.Controllers
         [ValidateAntiForgeryToken]
      
         public async Task<IActionResult> Create([Bind("Id,Name,PhoneNumber,PersonalDetails,MedicalHistory,InsuranceInformation,DoctorId")] Appointment appointment)
-        {
-          
+        {          
                 var doctorExists = await _context.Doctors.AnyAsync(d => d.Id == appointment.DoctorId);
                 if (!doctorExists)
                 {
@@ -54,11 +53,9 @@ namespace E_Healthcare.Controllers
                     ViewBag.Doctors = _context.Doctors.ToList(); 
                     return View(appointment);
                 }
-
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
             return RedirectToAction("Confirm", appointment);
-
         }
         public async Task<IActionResult> Edit(int? id)
         {
@@ -81,10 +78,7 @@ namespace E_Healthcare.Controllers
             if (id != appointment.Id)
             {
                 return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
+            }    
                 try
                 {
                     _context.Update(appointment);
@@ -101,12 +95,8 @@ namespace E_Healthcare.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }          
-            ViewBag.Doctors = await _context.Doctors.ToListAsync();
-            return View(appointment);
+                return RedirectToAction(nameof(Index));          
         }
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,10 +127,8 @@ namespace E_Healthcare.Controllers
         }
         public IActionResult Confirm(Appointment appointment)
         {
-            ViewBag.ConfirmationMessage = "Appointment confirmed successfully!";          
-
-           
-
+            ViewBag.ConfirmationMessage = "Appointment confirmed successfully!";       
+                       
             try
             {
                 string smtpServer = "smtp-mail.outlook.com";
@@ -159,7 +147,9 @@ namespace E_Healthcare.Controllers
                              "Personal Details: " + appointment.PersonalDetails + "\n" +
                              "Medical History: " + appointment.MedicalHistory + "\n" +
                              "Insurance Information: " + appointment.InsuranceInformation + "\n" +
-                             "Appointment Date and Time: " + appointment.AppointmentDateTime;
+                            "Appointment Date: " + appointment.AppointmentDate.ToString("MM/dd/yyyy") + "\n" +
+                             "Appointment Time: " + appointment.AppointmentTime.ToString(@"hh\:mm") ;
+
 
                 SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
                 smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);

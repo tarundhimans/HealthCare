@@ -30,8 +30,14 @@
         <span asp-validation-for="InsuranceInformation" class="text-danger"></span>
     </div>
     <div class="form-group col-lg-5">
-        <label for="AppointmentDateTime">Appointment Date and Time:</label>
-        <input type="datetime-local" class="form-control" id="AppointmentDateTime" name="AppointmentDateTime" required>
+        <label>Appointment Date:</label>
+        <input type="date" asp-for="AppointmentDate" class="form-control" />
+        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+    </div>
+    <div class="form-group col-lg-5">
+        <label>Appointment Time:</label>
+        <input type="time" asp-for="AppointmentTime" class="form-control" />
+        <span asp-validation-for="AppointmentTime" class="text-danger"></span>
     </div>
     <div class="form-group col-lg-5">
         <label>Doctor:</label>
@@ -49,9 +55,8 @@
 
 @section Scripts {
     <script>
-
         var currentDate = new Date();
-        var currentDateString = currentDate.toISOString().substring(0, 16);
-        document.getElementById('AppointmentDateTime').min = currentDateString;
+        var currentDateString = currentDate.toISOString().substring(0, 10);
+        document.getElementById('AppointmentDate').min = currentDateString;
     </script>
 }

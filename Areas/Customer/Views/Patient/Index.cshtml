@@ -12,7 +12,7 @@
             <th>Medical History</th>
             <th>Insurance Information</th>
             <th>Appointment Date and Time</th>
-            
+
             <th>Doctor</th>
             <th>Action</th>
         </tr>
@@ -26,12 +26,13 @@
                 <td>@appointment.PersonalDetails</td>
                 <td>@appointment.MedicalHistory</td>
                 <td>@appointment.InsuranceInformation</td>
-                <td>@appointment.AppointmentDateTime</td>
-                
+                <td>@($"{appointment.AppointmentDate.ToShortDateString()} {appointment.AppointmentTime.ToString(@"hh\:mm\:ss")}")</td>
+
+
                 <td>@(appointment.Doctor != null ? appointment.Doctor.Name : "N/A")</td>
                 <td>
                     <a class="btn btn-success" asp-action="Details" asp-route-id="@appointment.Id">Details</a> |
-                    <a class ="btn btn-info" asp-action="Edit" asp-route-id="@appointment.Id">Edit</a> |
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@appointment.Id">Edit</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@appointment.Id">Delete</a>
                 </td>
             </tr>

@@ -563,8 +563,19 @@ E:\ASP.NET MVC\E-Healthcare\bin\Debug\net8.0\refs\System.Xml.XPath.XDocument.dll
 E:\ASP.NET MVC\E-Healthcare\bin\Debug\net8.0\refs\WindowsBase.dll
 E:\ASP.NET MVC\E-Healthcare\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 E:\ASP.NET MVC\E-Healthcare\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.csproj.AssemblyReference.cache
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.AssemblyInfoInputs.cache
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.AssemblyInfo.cs
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.csproj.CoreCompileInputs.cache
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.MvcApplicationPartsAssemblyInfo.cs
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.MvcApplicationPartsAssemblyInfo.cache
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.RazorAssemblyInfo.cache
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.RazorAssemblyInfo.cs
+E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.sourcelink.json
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\appsettings.Development.json
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\appsettings.json
+E:\New folder (2)\HealthCare\bin\Debug\net8.0\libman.json
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\E-Healthcare.staticwebassets.runtime.json
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\E-Healthcare.exe
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\E-Healthcare.deps.json
@@ -1103,16 +1114,6 @@ E:\New folder (2)\HealthCare\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Dra
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 E:\New folder (2)\HealthCare\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.csproj.AssemblyReference.cache
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.GeneratedMSBuildEditorConfig.editorconfig
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.AssemblyInfoInputs.cache
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.AssemblyInfo.cs
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.csproj.CoreCompileInputs.cache
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.MvcApplicationPartsAssemblyInfo.cs
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.MvcApplicationPartsAssemblyInfo.cache
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.RazorAssemblyInfo.cache
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.RazorAssemblyInfo.cs
-E:\New folder (2)\HealthCare\obj\Debug\net8.0\E-Healthcare.sourcelink.json
 E:\New folder (2)\HealthCare\obj\Debug\net8.0\staticwebassets.build.json
 E:\New folder (2)\HealthCare\obj\Debug\net8.0\staticwebassets.development.json
 E:\New folder (2)\HealthCare\obj\Debug\net8.0\staticwebassets\msbuild.E-Healthcare.Microsoft.AspNetCore.StaticWebAssets.props

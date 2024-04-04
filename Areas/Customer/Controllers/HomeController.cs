@@ -65,6 +65,10 @@ namespace E_Healthcare.Areas.Customer.Controllers
 
         public IActionResult DoctorDetails(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Identity/Account/Login");
+            }
             var doctor = _context.Doctors.FirstOrDefault(d => d.Id == id);
 
             if (doctor == null)
@@ -75,7 +79,7 @@ namespace E_Healthcare.Areas.Customer.Controllers
             return View(doctor);
         }
 
-        // Other actions...
+       
 
         public IActionResult Privacy()
         {

@@ -8,6 +8,9 @@
     <h4>Personal Details: @Model.PersonalDetails</h4>
     <h4>Medical History: @Model.MedicalHistory</h4>
     <h4>Insurance Information: @Model.InsuranceInformation</h4>
+    <h4>Appointment Date: @Model.AppointmentDate.ToShortDateString()</h4>
+    <h4>Appointment Time: @Model.AppointmentTime.ToString(@"hh\:mm\:ss")</h4>
+
 </div>
 <p>
     

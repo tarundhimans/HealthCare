@@ -29,10 +29,67 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Name: @doctor.Name</h5>
-                            <p class="card-text">Qualification: @doctor.Specialties</p>
-                            <p class="card-text">Contact Information: @doctor.Qualifications</p>
-                            <p class="card-text">Available: @doctor.ConsultationFee</p>
-                         
+                            <p class="card-text">Specialties: @doctor.Specialties</p>
+                            <p class="card-text"> Qualifications: @doctor.Qualifications</p>
+                            <p class="card-text">Fee: @doctor.ConsultationFee</p>
+                            <div class="ratings">
+                                @if (doctor.Specialties == "SkinCare")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Chiropractor")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "ENT")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Neurology")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Psychiatry")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Cardiology")
+                                {
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Urologist")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else if (doctor.Specialties == "Ortholopedics")
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                                else
+                                {
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                }
+                            </div>
                             <a asp-action="DoctorDetails" class="btn btn-primary" asp-route-id="@doctor.Id">Book Appointment</a>
                         </div>
                     </div>

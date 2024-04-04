@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
     <link rel="stylesheet" href="css/font-awesome.css">
@@ -27,7 +29,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -39,16 +41,32 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="Admin" asp-controller="Doctor" asp-action="Index">Doctors</a>
                             </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Customer" asp-controller="Patient" asp-action="Index">Appointment </a>
+                            </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Patient" asp-action="Index">Patient</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="SubscriptionPlan" asp-action="Index">Subscription Plans</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Subscription" asp-action="Index">Subscription </a>
-                        </li>
+                        @if (User.IsInRole(SD.Role_Patient))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Customer" asp-controller="Subscription" asp-action="Index">Subscription</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(SD.Role_Doctor) || User.IsInRole(SD.Role_Patient))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Customer" asp-controller="SubscriptionPlan" asp-action="Index">Subscription Plans</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Customer" asp-controller="Message" asp-action="Index">
+                                    <i class="fas fa-bell"></i> 
+                                    <span id="messageCount" class="badge rounded-pill bg-danger">0</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -12,9 +12,11 @@
         <br />
         <strong>Name:</strong> @Model.Name <br />
         <strong>Contact Information:</strong> @Model.PhoneNumber <br />
-        <strong>Case Type:</strong> @Model.PersonalDetails <br />
-        <strong>Attorney Name:</strong> @Model.MedicalHistory <br />
-        <strong>Appointment Date:</strong> @Model.InsuranceInformation <br />
+        <strong>PersonalDetails:</strong> @Model.PersonalDetails <br />
+        <strong>MedicalHistory:</strong> @Model.MedicalHistory <br />
+        <strong>Appointment Date:</strong> @Model.AppointmentDate.ToShortDateString() <br />
+        <strong>Appointment Time:</strong> @Model.AppointmentTime.ToString(@"hh\:mm\:ss") <br />
+
 
         <a href="@Url.Action("Details", "Client", new { id = Model.Id })" class=" text-white btn btn-primary ">Booking Details</a>
     </div>

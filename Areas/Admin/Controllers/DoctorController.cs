@@ -77,26 +77,22 @@
                 {
                     return NotFound();
                 }
-
                 var existingDoctor = await _context.Doctors.FindAsync(id);
                 if (existingDoctor == null)
                 {
                     return NotFound();
                 }
-
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 if (existingDoctor.ApplicationUserId != userId)
                 {
                     return Unauthorized();
                 }
-
                     try
-                    {
-                   
+                    {                   
+                        existingDoctor.Name = doctor.Name;
                         existingDoctor.Specialties = doctor.Specialties;
                         existingDoctor.Qualifications = doctor.Qualifications;
                         existingDoctor.ConsultationFee = doctor.ConsultationFee;
-
                         _context.Update(existingDoctor);
                         await _context.SaveChangesAsync();
                     }
@@ -111,11 +107,8 @@
                             throw;
                         }
                     }
-                    return RedirectToAction(nameof(Index));
-          
+                    return RedirectToAction(nameof(Index));          
             }
-
-
             public async Task<IActionResult> Delete(int? id)
             {
                 if (id == null)
