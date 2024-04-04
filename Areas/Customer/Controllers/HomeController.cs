@@ -1,23 +1,44 @@
 using E_Healthcare.Data;
 using E_Healthcare.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq;
 
 namespace E_Healthcare.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
             _context = context;
         }
-        public IActionResult Index(int? page)
+
+        public IActionResult Index(int? page, string search)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var doctor = _context.Doctors.FirstOrDefault(d => d.Name.Contains(search));
+                if (doctor != null)
+                {
+                    // Check if the user is logged in
+                    if (!User.Identity.IsAuthenticated)
+                    {
+                        // Redirect to the login page if not logged in
+                        return Redirect("/Identity/Account/Login");
+                    }
+                    else
+                    {
+                        // Redirect to DoctorDetails if logged in
+                        return RedirectToAction("DoctorDetails", new { id = doctor.Id });
+                    }
+                }
+            }
+
+            // If search is empty or doctor not found, display the regular index page
             const int pageSize = 8;
             int pageNumber = page ?? 1;
 
@@ -37,16 +58,13 @@ namespace E_Healthcare.Areas.Customer.Controllers
 
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = pageNumber;
+            ViewBag.Search = search;
 
             return View(doctors);
         }
+
         public IActionResult DoctorDetails(int id)
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return Redirect("/Identity/Account/Login");
-            }
-
             var doctor = _context.Doctors.FirstOrDefault(d => d.Id == id);
 
             if (doctor == null)
@@ -57,6 +75,7 @@ namespace E_Healthcare.Areas.Customer.Controllers
             return View(doctor);
         }
 
+        // Other actions...
 
         public IActionResult Privacy()
         {

@@ -12,6 +12,7 @@
             <th>Medical History</th>
             <th>Insurance Information</th>
             <th>Appointment Date and Time</th>
+            
             <th>Doctor</th>
             <th>Action</th>
         </tr>
@@ -26,6 +27,7 @@
                 <td>@appointment.MedicalHistory</td>
                 <td>@appointment.InsuranceInformation</td>
                 <td>@appointment.AppointmentDateTime</td>
+                
                 <td>@(appointment.Doctor != null ? appointment.Doctor.Name : "N/A")</td>
                 <td>
                     <a class="btn btn-success" asp-action="Details" asp-route-id="@appointment.Id">Details</a> |

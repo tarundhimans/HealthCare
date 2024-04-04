@@ -15,5 +15,6 @@ namespace E_Healthcare.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
     }
 }

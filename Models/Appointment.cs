@@ -25,5 +25,6 @@ namespace E_Healthcare.Models
 
         [Required(ErrorMessage = "Appointment date and time are required.")]
         public DateTime AppointmentDateTime { get; set; }
+      
     }
 }

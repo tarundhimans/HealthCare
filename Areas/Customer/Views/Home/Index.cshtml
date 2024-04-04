@@ -5,6 +5,16 @@
 
 
 <h1 class="text-danger text-center">Health Care</h1>
+<form  id="searchForm" asp-controller="Home" asp-action="Index" method="get" class="my-4">
+    <div class="row">
+        <div class="col-md-8">
+            <input id="searchInput" type="text" name="search" class="form-control" placeholder="Search by doctor name" value="@ViewBag.Search" />
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
 
 <div class="row">
     @foreach (var doctor in Model)
@@ -40,4 +50,25 @@
 @if (ViewBag.CurrentPage < ViewBag.TotalPages)
 {
     <a asp-action="Index" class="btn btn-primary" asp-route-page="@(ViewBag.CurrentPage + 1)">Next</a>
+}
+
+@section Scripts {
+    <script>
+        $('#searchInput').on('input', function () {
+            var searchValue = $(this).val();
+            if (searchValue.length >= 3) {
+                $.ajax({
+                    url: '/Customer/Home/Search',
+                    method: 'GET',
+                    data: { search: searchValue },
+                    success: function (data) {
+                        $('.row').html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    </script>
 }
