@@ -162,7 +162,7 @@ namespace E_Healthcare.Controllers
                              "Medical History: " + appointment.MedicalHistory + "\n" +
                              "Insurance Information: " + appointment.InsuranceInformation + "\n" +
                             "Appointment Date: " + appointment.AppointmentDate.ToString("MM/dd/yyyy") + "\n" +
-                             "Appointment Time: " + appointment.AppointmentTime.ToString(@"hh\:mm") ;
+                            "Appointment Time: " + appointment.AppointmentTime.ToString(@"hh\:mm") ;
 
 
                 SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
