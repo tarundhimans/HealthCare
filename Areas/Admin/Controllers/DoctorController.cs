@@ -4,11 +4,13 @@
     using E_Healthcare.Models;
     using System.Threading.Tasks;
     using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
     namespace E_Healthcare.Controllers
     {
         [Area("Admin")]
-        public class DoctorController : Controller
+    [Authorize(Roles = "Doctor")]
+    public class DoctorController : Controller
         {
             private readonly ApplicationDbContext _context;
 
@@ -16,12 +18,20 @@
             {
                 _context = context;
             }
-            public async Task<IActionResult> Index()
-            {
-                var doctors = await _context.Doctors.ToListAsync();
-                return View(doctors);
-            }
-            public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Index(int? page)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+
+            var doctors = await _context.Doctors
+                .OrderBy(d => d.Name) 
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return View(doctors);
+        }
+        public async Task<IActionResult> Details(int? id)
             {
                 if (id == null)
                 {
@@ -56,7 +66,6 @@
                 {
                     return NotFound();
                 }
-
                 var doctor = await _context.Doctors.FindAsync(id);
                 if (doctor == null)
                 {

@@ -69,7 +69,7 @@ namespace E_Healthcare.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointments", (string)null);
                 });
 
             modelBuilder.Entity("E_Healthcare.Models.Doctor", b =>
@@ -103,7 +103,7 @@ namespace E_Healthcare.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("E_Healthcare.Models.Rating", b =>
@@ -129,7 +129,7 @@ namespace E_Healthcare.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Ratings", (string)null);
                 });
 
             modelBuilder.Entity("E_Healthcare.Models.Subscription", b =>
@@ -161,7 +161,7 @@ namespace E_Healthcare.Data.Migrations
 
                     b.HasIndex("SubscriptionPlanId");
 
-                    b.ToTable("Subscriptions");
+                    b.ToTable("Subscriptions", (string)null);
                 });
 
             modelBuilder.Entity("E_Healthcare.Models.SubscriptionPlan", b =>
@@ -188,7 +188,7 @@ namespace E_Healthcare.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubscriptionPlans");
+                    b.ToTable("SubscriptionPlans", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -2,19 +2,28 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<style>
+    body {
+        background-image: url('https://images.unsplash.com/photo-1541140134513-85a161dc4a00?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JleSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
 
 <h1 class="text-danger text-center">Health Care</h1>
-<form  id="searchForm" asp-controller="Home" asp-action="Index" method="get" class="my-4">
-    <div class="row">
-        <div class="col-md-8">
-            <input id="searchInput" type="text" name="search" class="form-control" placeholder="Search by doctor name" value="@ViewBag.Search" />
+<marquee behavior="scroll" direction="left" style="width: 100%;"><strong>Health is a state of complete physical, mental and social well-being and not merely the absence of disease or infirmity. We Care For You!!! 😊</strong></marquee>
+
+<form id="searchForm" asp-controller="Home" asp-action="Index" method="get" class="my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 offset-md-2">
+            <input id="searchInput" type="text" name="search" class="form-control" placeholder="Search By Doctor Name" value="@ViewBag.Search" />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </div>
 </form>
+
 
 <div class="row">
     @foreach (var doctor in Model)

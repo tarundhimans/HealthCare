@@ -1,4 +1,11 @@
 ﻿@model E_Healthcare.Models.Appointment
+<style>
+    body {
+        background-image: url('https://cdn.create.vista.com/api/media/small/369575390/stock-photo-top-view-stereoscope-blue-background-copy-space');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
 
 <h2>Create Appointment</h2>
 
@@ -10,7 +17,7 @@
     </div>
     <div class="form-group col-lg-5">
         <label>Phone Number:</label>
-        <input asp-for="PhoneNumber" class="form-control" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" />
+        <input asp-for="PhoneNumber" type="number" class="form-control" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
 

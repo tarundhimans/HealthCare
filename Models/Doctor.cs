@@ -18,7 +18,7 @@ namespace E_Healthcare.Models
 
         [Required(ErrorMessage = "Consultation fee is required")]
         [Range(0, double.MaxValue, ErrorMessage = "Consultation fee must be a positive value")]
-        public decimal ConsultationFee { get; set; }
+        public decimal ConsultationFee { get; set; }        
 
     }
 }

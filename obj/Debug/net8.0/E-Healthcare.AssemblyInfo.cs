@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("E-Healthcare")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f4984d3add2726f336c28a34c2cddff4aa44fde")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35d55111a683401e31b9716385c57c3050f8950e")]
 [assembly: System.Reflection.AssemblyProductAttribute("E-Healthcare")]
 [assembly: System.Reflection.AssemblyTitleAttribute("E-Healthcare")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

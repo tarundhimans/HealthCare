@@ -5,10 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Healthcare.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "Doctor,Patient")]
     public class PatientController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,9 +19,20 @@ namespace E_Healthcare.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(int? page)
         {
-            var appointments = await _context.Appointments.Include(a => a.Doctor).ToListAsync();
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+
+            var appointments = await _context.Appointments
+                .Include(a => a.Doctor)
+                .OrderByDescending(a => a.AppointmentDate)
+                .ThenByDescending(a => a.AppointmentTime)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
             return View(appointments);
         }
         public async Task<IActionResult> Details(int? id)
@@ -36,6 +49,7 @@ namespace E_Healthcare.Controllers
             }
             return View(patient);
         }
+        [Authorize(Roles = "Patient")]
         public IActionResult Create()
         {
             ViewBag.Doctors = _context.Doctors.ToList();

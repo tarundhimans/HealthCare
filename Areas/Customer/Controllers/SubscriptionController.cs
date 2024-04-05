@@ -20,27 +20,20 @@ namespace E_Healthcare.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var subscriptions = await _context.Subscriptions
-                .Include(s => s.Plan)
-                .Include(s => s.ApplicationUser)
-                .ToListAsync();
-
+            var subscriptions = await _context.Subscriptions.Include(s => s.Plan).Include(s => s.ApplicationUser).ToListAsync();
             return View(subscriptions);
         }
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var subscription = await _context.Subscriptions.Include(s => s.Plan).Include(s => s.ApplicationUser).FirstOrDefaultAsync(m => m.Id == id);
             if (subscription == null)
             {
                 return NotFound();
             }
-
             return View(subscription);
         }
         public IActionResult Create()
@@ -49,39 +42,28 @@ namespace E_Healthcare.Controllers
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
             ViewBag.UserId = new SelectList(_context.Users.Where(u => u.Email == userEmail), "Id", "Email");
             var subscriptionPlans = _context.SubscriptionPlans.ToList();
-
-            // Create a SelectList for the dropdown list
             ViewBag.SubscriptionPlans = new SelectList(subscriptionPlans, "Id", "Name");
-
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,SubscriptionPlanId,ApplicationUserId,StartDate")] Subscription subscription)
-        {           
-                var selectedPlan = await _context.SubscriptionPlans.FindAsync(subscription.SubscriptionPlanId);
-                if (selectedPlan != null)
-                {
-                    subscription.EndDate = subscription.StartDate.AddMonths(selectedPlan.DurationMonths);
-                }
-
-                _context.Add(subscription);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            
-
-            ViewBag.PlanId = new SelectList(_context.SubscriptionPlans, "Id", "Name", subscription.SubscriptionPlanId);
-            ViewBag.UserId = new SelectList(_context.Users, "Id", "Email", subscription.ApplicationUserId);
-            return View(subscription);
+        {
+            var selectedPlan = await _context.SubscriptionPlans.FindAsync(subscription.SubscriptionPlanId);
+            if (selectedPlan != null)
+            {
+                subscription.EndDate = subscription.StartDate.AddMonths(selectedPlan.DurationMonths);
+            }
+            _context.Add(subscription);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var subscription = await _context.Subscriptions.FindAsync(id);
             if (subscription == null)
             {
@@ -99,7 +81,6 @@ namespace E_Healthcare.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -131,15 +112,11 @@ namespace E_Healthcare.Controllers
                 return NotFound();
             }
 
-            var subscription = await _context.Subscriptions
-                .Include(s => s.Plan)
-                .Include(s => s.ApplicationUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var subscription = await _context.Subscriptions.Include(s => s.Plan).Include(s => s.ApplicationUser).FirstOrDefaultAsync(m => m.Id == id);
             if (subscription == null)
             {
                 return NotFound();
             }
-
             return View(subscription);
         }
         [HttpPost, ActionName("Delete")]

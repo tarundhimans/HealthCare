@@ -6,14 +6,15 @@ using E_Healthcare.Data;
 using E_Healthcare.Models;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Healthcare.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "Doctor,Patient")]
     public class SubscriptionPlanController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public SubscriptionPlanController(ApplicationDbContext context)
         {
             _context = context;
@@ -73,9 +74,7 @@ namespace E_Healthcare.Controllers
             if (id != subscriptionPlan.Id)
             {
                 return NotFound();
-            }
-            if (ModelState.IsValid)
-            {
+            }            
                 try
                 {
                     _context.Update(subscriptionPlan);
@@ -92,9 +91,7 @@ namespace E_Healthcare.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(subscriptionPlan);
+                return RedirectToAction(nameof(Index));          
         }
         public async Task<IActionResult> Delete(int? id)
         {
@@ -129,18 +126,13 @@ namespace E_Healthcare.Controllers
             {
                 return NotFound();
             }
-
             try
             {
-                // Fetch subscription plan details based on the provided ID
                 var subscriptionPlan = await _context.SubscriptionPlans.FindAsync(id);
-
                 if (subscriptionPlan == null)
                 {
                     return NotFound();
                 }
-
-                // Your email configuration settings
                 string smtpServer = "smtp-mail.outlook.com";
                 int smtpPort = 587;
                 string smtpUsername = "dhiman.cssoltuions@outlook.com";
@@ -149,7 +141,7 @@ namespace E_Healthcare.Controllers
                 // Create the email message
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(smtpUsername);
-                mail.To.Add("dhiman.cssolutions@gmail.com"); // Change this to the subscriber's email address
+                mail.To.Add("dhiman.cssolutions@gmail.com"); 
                 mail.Subject = "Subscription Confirmation";
                 mail.Body = "Thank you for subscribing. Your purchase was successful!";
 
@@ -160,17 +152,13 @@ namespace E_Healthcare.Controllers
 
                 // Send the email
                 smtpClient.Send(mail);
-
-                // Optionally, you can redirect to a success page after sending the email
                 return View();
             }
             catch (Exception ex)
             {
-                // Handle any errors occurred during email sending
                 ViewBag.Error = "An error occurred: " + ex.Message;
                 return View("Error");
             }
         }
     }
-
 }
