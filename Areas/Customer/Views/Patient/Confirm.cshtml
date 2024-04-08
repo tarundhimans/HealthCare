@@ -14,8 +14,7 @@
         <strong>Contact Information:</strong> @Model.PhoneNumber <br />
         <strong>PersonalDetails:</strong> @Model.PersonalDetails <br />
         <strong>MedicalHistory:</strong> @Model.MedicalHistory <br />
-        <strong>Appointment Date:</strong> @Model.AppointmentDate.ToShortDateString() <br />
-        <strong>Appointment Time:</strong> @Model.AppointmentTime.ToString(@"hh\:mm\:ss") <br />
+
 
 
         <a href="@Url.Action("Details", "Patient", new { id = Model.Id })" class=" text-white btn btn-primary ">Booking Details</a>

@@ -41,8 +41,7 @@ namespace E_Healthcare.Controllers
             {
                 return NotFound();
             }
-            var patient = await _context.Appointments
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var patient = await _context.Appointments.FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
                 return NotFound();

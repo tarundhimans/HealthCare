@@ -38,12 +38,12 @@
     </div>
     <div class="form-group col-lg-5">
         <label>Appointment Date:</label>
-        <input type="date" asp-for="AppointmentDate" class="form-control" />
+        <input type="date" asp-for="AppointmentDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
         <span asp-validation-for="AppointmentDate" class="text-danger"></span>
     </div>
     <div class="form-group col-lg-5">
         <label>Appointment Time:</label>
-        <input type="time" asp-for="AppointmentTime" class="form-control" />
+        <input type="time" asp-for="AppointmentTime" class="form-control" min="09:00" max="17:00" />
         <span asp-validation-for="AppointmentTime" class="text-danger"></span>
     </div>
 
@@ -60,11 +60,3 @@
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-
-@section Scripts {
-    <script>
-        var currentDate = new Date();
-        var currentDateString = currentDate.toISOString().substring(0, 10);
-        document.getElementById('AppointmentDate').min = currentDateString;
-    </script>
-}
